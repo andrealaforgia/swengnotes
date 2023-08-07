@@ -1,0 +1,72 @@
+# netlify.toml
+
+# Build settings
+[build]
+  command = "hugo"   # The build command to generate your Hugo site
+  publish = "public" # The output directory where Hugo generates the static site
+
+# Build environment variables (if needed)
+#[build.environment]
+# Example:
+#   HUGO_ENV = "production"
+
+[context.production.environment]
+HUGO_VERSION = "0.116.1"
+HUGO_ENV = "production"
+HUGO_ENABLEGITINFO = "true"
+
+# Redirects
+#[[redirects]]
+#  # Redirect all traffic to the domain with "www" (e.g., example.com to www.example.com)
+#  from = "/*"
+#  to = "https://www.example.com/:splat"
+#  status = 301
+
+# Custom headers
+[[headers]]
+  # Set default security headers for all pages
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Redirect specific paths (optional)
+#[[redirects]]
+#  from = "/old-path"
+#  to = "/new-path"
+#  status = 301
+
+# Context-specific settings (optional)
+#[context.production.environment]
+# Example:
+#   BASE_URL = "https://www.example.com"
+
+#[context.deploy-preview.environment]
+# Example:
+#   BASE_URL = "https://deploy-preview-example.netlify.app"
+
+#[context.branch-deploy.environment]
+# Example:
+#   BASE_URL = "https://branch-deploy-example.netlify.app"
+
+#[context.dev.environment]
+# Example:
+#   BASE_URL = "http://localhost:1313"
+
+# Asset optimization (optional)
+#[plugins]
+#  # Netlify plugin to optimize images
+#  [[plugins.inputs]]
+#    package = "netlify-plugin-image-optim"
+#    [plugins.inputs.config]
+#      jpegtran = true
+#      optipng = true
+#      svgo = true
+
+# Uncomment the section above to enable asset optimization using the netlify-plugin-image-optim.
+# Make sure to install the plugin in your Hugo project by running:
+# `npm install netlify-plugin-image-optim`
+
+# The example above enables image optimization using jpegtran, optipng, and svgo.
+# Customize the configuration as needed based on the assets you have in your project.
